@@ -89,6 +89,5 @@ namespace kursovaya.Data
 
             base.OnModelCreating(builder);
         }
-        public DbSet<volzshki.Models.Booking> Booking { get; set; } = default!;
     }
 }
