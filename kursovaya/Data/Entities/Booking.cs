@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace volzshki.Models
+namespace kursovaya.Data.Entities
 {
     public class Booking
     {

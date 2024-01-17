@@ -1,23 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
-using volzshki.Models;
+﻿using kursovaya.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace kursovaya.Data
 {
-    public class ApplicationDbContext:DbContext
+    public sealed class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
+        
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Movie_genre> Movies_genres { get; set; }
         public DbSet<Auditorium> Auditoriums { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Screening> Screenings { get; set; }
-        public DbSet<Reserved_seat> Reserved_seats { get; set; } 
-
+        public DbSet<Reserved_seat> Reserved_seats { get; set; }
         public DbSet<Weekly_calendar> Weekly_calendar { get; set; }
         public DbSet<Poster> Poster { get; set; }
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
-        {
+        public DbSet<Booking> Bookings { get; set; }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+            
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,8 +33,6 @@ namespace kursovaya.Data
 
             builder.Entity<Booking>().Property(u => u.Cost).HasColumnType("decimal(10, 2)");
             builder.Entity<Screening>().Property(u => u.Cost).HasColumnType("decimal(10, 2)");
-            /*   builder.Entity<Reserved_seat>().HasIndex(elem => new { elem.BookingId }).IsUnique();*/
-            //builder.Entity<Reserved_seat>().HasIndex(elem => new { elem.MovieId, elem.GenreId }).IsUnique();
 
 
             builder.Entity<Screening>()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using kursovaya.Data;
 
@@ -11,9 +12,11 @@ using kursovaya.Data;
 namespace kursovaya.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231014013327_miggg")]
+    partial class miggg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,7 +223,7 @@ namespace kursovaya.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Auditorium", b =>
+            modelBuilder.Entity("volzshki.Models.Auditorium", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,7 +243,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Auditoriums");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Booking", b =>
+            modelBuilder.Entity("volzshki.Models.Booking", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -272,7 +275,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Client", b =>
+            modelBuilder.Entity("volzshki.Models.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -297,7 +300,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Genre", b =>
+            modelBuilder.Entity("volzshki.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -317,7 +320,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Movie", b =>
+            modelBuilder.Entity("volzshki.Models.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -358,7 +361,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Movie_genre", b =>
+            modelBuilder.Entity("volzshki.Models.Movie_genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -382,7 +385,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Movies_genres");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Poster", b =>
+            modelBuilder.Entity("volzshki.Models.Poster", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -406,7 +409,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Poster");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Reserved_seat", b =>
+            modelBuilder.Entity("volzshki.Models.Reserved_seat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -435,7 +438,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Reserved_seats");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Screening", b =>
+            modelBuilder.Entity("volzshki.Models.Screening", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -469,7 +472,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Screenings");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Seat", b =>
+            modelBuilder.Entity("volzshki.Models.Seat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -493,7 +496,7 @@ namespace kursovaya.Migrations
                     b.ToTable("Seats");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Weekly_calendar", b =>
+            modelBuilder.Entity("volzshki.Models.Weekly_calendar", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -567,15 +570,15 @@ namespace kursovaya.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Booking", b =>
+            modelBuilder.Entity("volzshki.Models.Booking", b =>
                 {
-                    b.HasOne("kursovaya.Data.Entities.Client", "Client")
+                    b.HasOne("volzshki.Models.Client", "Client")
                         .WithMany("Bookings")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("kursovaya.Data.Entities.Screening", "Screening")
+                    b.HasOne("volzshki.Models.Screening", "Screening")
                         .WithMany("Bookings")
                         .HasForeignKey("ScreeningId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -586,15 +589,15 @@ namespace kursovaya.Migrations
                     b.Navigation("Screening");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Movie_genre", b =>
+            modelBuilder.Entity("volzshki.Models.Movie_genre", b =>
                 {
-                    b.HasOne("kursovaya.Data.Entities.Genre", "Genre")
+                    b.HasOne("volzshki.Models.Genre", "Genre")
                         .WithMany("Movie_genres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("kursovaya.Data.Entities.Movie", "Movie")
+                    b.HasOne("volzshki.Models.Movie", "Movie")
                         .WithMany("Movie_genres")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -605,15 +608,15 @@ namespace kursovaya.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Poster", b =>
+            modelBuilder.Entity("volzshki.Models.Poster", b =>
                 {
-                    b.HasOne("kursovaya.Data.Entities.Screening", "Screening")
+                    b.HasOne("volzshki.Models.Screening", "Screening")
                         .WithOne("Poster")
-                        .HasForeignKey("kursovaya.Data.Entities.Poster", "ScreeningId")
+                        .HasForeignKey("volzshki.Models.Poster", "ScreeningId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("kursovaya.Data.Entities.Weekly_calendar", "WeeklyDay")
+                    b.HasOne("volzshki.Models.Weekly_calendar", "WeeklyDay")
                         .WithMany("Posters")
                         .HasForeignKey("WeeklyDayId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -624,21 +627,21 @@ namespace kursovaya.Migrations
                     b.Navigation("WeeklyDay");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Reserved_seat", b =>
+            modelBuilder.Entity("volzshki.Models.Reserved_seat", b =>
                 {
-                    b.HasOne("kursovaya.Data.Entities.Booking", "Booking")
+                    b.HasOne("volzshki.Models.Booking", "Booking")
                         .WithMany("Reserved_seats")
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("kursovaya.Data.Entities.Screening", "Screening")
+                    b.HasOne("volzshki.Models.Screening", "Screening")
                         .WithMany("Reserved_seats")
                         .HasForeignKey("ScreeningId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("kursovaya.Data.Entities.Seat", "Seat")
+                    b.HasOne("volzshki.Models.Seat", "Seat")
                         .WithMany("Reserved_seats")
                         .HasForeignKey("SeatId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -651,15 +654,15 @@ namespace kursovaya.Migrations
                     b.Navigation("Seat");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Screening", b =>
+            modelBuilder.Entity("volzshki.Models.Screening", b =>
                 {
-                    b.HasOne("kursovaya.Data.Entities.Auditorium", "Auditorium")
+                    b.HasOne("volzshki.Models.Auditorium", "Auditorium")
                         .WithMany("Screenings")
                         .HasForeignKey("AuditoriumId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("kursovaya.Data.Entities.Movie", "Movie")
+                    b.HasOne("volzshki.Models.Movie", "Movie")
                         .WithMany("Screenings")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -670,9 +673,9 @@ namespace kursovaya.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Seat", b =>
+            modelBuilder.Entity("volzshki.Models.Seat", b =>
                 {
-                    b.HasOne("kursovaya.Data.Entities.Auditorium", "Auditorium")
+                    b.HasOne("volzshki.Models.Auditorium", "Auditorium")
                         .WithMany("Seats")
                         .HasForeignKey("AuditoriumId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -681,36 +684,36 @@ namespace kursovaya.Migrations
                     b.Navigation("Auditorium");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Auditorium", b =>
+            modelBuilder.Entity("volzshki.Models.Auditorium", b =>
                 {
                     b.Navigation("Screenings");
 
                     b.Navigation("Seats");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Booking", b =>
+            modelBuilder.Entity("volzshki.Models.Booking", b =>
                 {
                     b.Navigation("Reserved_seats");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Client", b =>
+            modelBuilder.Entity("volzshki.Models.Client", b =>
                 {
                     b.Navigation("Bookings");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Genre", b =>
+            modelBuilder.Entity("volzshki.Models.Genre", b =>
                 {
                     b.Navigation("Movie_genres");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Movie", b =>
+            modelBuilder.Entity("volzshki.Models.Movie", b =>
                 {
                     b.Navigation("Movie_genres");
 
                     b.Navigation("Screenings");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Screening", b =>
+            modelBuilder.Entity("volzshki.Models.Screening", b =>
                 {
                     b.Navigation("Bookings");
 
@@ -719,12 +722,12 @@ namespace kursovaya.Migrations
                     b.Navigation("Reserved_seats");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Seat", b =>
+            modelBuilder.Entity("volzshki.Models.Seat", b =>
                 {
                     b.Navigation("Reserved_seats");
                 });
 
-            modelBuilder.Entity("kursovaya.Data.Entities.Weekly_calendar", b =>
+            modelBuilder.Entity("volzshki.Models.Weekly_calendar", b =>
                 {
                     b.Navigation("Posters");
                 });

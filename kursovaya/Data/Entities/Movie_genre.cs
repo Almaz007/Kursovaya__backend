@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace volzshki.Models
+namespace kursovaya.Data.Entities
 {
     public class Movie_genre
     {

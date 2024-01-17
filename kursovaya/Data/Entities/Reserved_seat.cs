@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace volzshki.Models
+namespace kursovaya.Data.Entities
 {
     public class Reserved_seat
     {
@@ -12,9 +12,9 @@ namespace volzshki.Models
         public int ScreeningId { get; set; }
         [JsonIgnore]
         public virtual Seat? Seat { get; set; }
-         [JsonIgnore]
+        [JsonIgnore]
         public virtual Screening? Screening { get; set; }
-         [JsonIgnore]
+        [JsonIgnore]
         public virtual Booking? Booking { get; set; }
 
 

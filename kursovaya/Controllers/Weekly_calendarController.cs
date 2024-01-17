@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using kursovaya.Data;
-using volzshki.Models;
+using kursovaya.Data.Entities;
 
 namespace kursovaya.Controllers
 {

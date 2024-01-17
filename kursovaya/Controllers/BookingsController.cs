@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using kursovaya.Data;
-using volzshki.Models;
+using Microsoft.AspNetCore.Authorization;
+using kursovaya.Data.Entities;
 
 namespace kursovaya.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    /*[Authorize]*/
     public class BookingsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -25,22 +27,22 @@ namespace kursovaya.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBooking()
         {
-          if (_context.Booking == null)
+          if (_context.Bookings == null)
           {
               return NotFound();
           }
-            return await _context.Booking.ToListAsync();
+            return await _context.Bookings.ToListAsync();
         }
 
         // GET: api/Bookings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(int id)
         {
-          if (_context.Booking == null)
+          if (_context.Bookings == null)
           {
               return NotFound();
           }
-            var booking = await _context.Booking.FindAsync(id);
+            var booking = await _context.Bookings.FindAsync(id);
 
             if (booking == null)
             {
@@ -86,11 +88,11 @@ namespace kursovaya.Controllers
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
         {
-          if (_context.Booking == null)
+          if (_context.Bookings == null)
           {
               return Problem("Entity set 'ApplicationDbContext.Booking'  is null.");
           }
-            _context.Booking.Add(booking);
+            _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBooking", new { id = booking.Id }, booking);
@@ -100,17 +102,17 @@ namespace kursovaya.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
-            if (_context.Booking == null)
+            if (_context.Bookings == null)
             {
                 return NotFound();
             }
-            var booking = await _context.Booking.FindAsync(id);
+            var booking = await _context.Bookings.FindAsync(id);
             if (booking == null)
             {
                 return NotFound();
             }
 
-            _context.Booking.Remove(booking);
+            _context.Bookings.Remove(booking);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +120,7 @@ namespace kursovaya.Controllers
 
         private bool BookingExists(int id)
         {
-            return (_context.Booking?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Bookings?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

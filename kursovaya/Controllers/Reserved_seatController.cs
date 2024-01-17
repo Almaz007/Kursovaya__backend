@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using kursovaya.Data;
-using volzshki.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using kursovaya.Data.Entities;
 
 namespace kursovaya.Controllers
 {
